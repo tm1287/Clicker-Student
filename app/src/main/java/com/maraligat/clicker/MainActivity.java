@@ -26,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference dr_firebase;
     private DatabaseReference dr_agreeChild;
     private DatabaseReference dr_disagreeChild;
+    private DatabaseReference dr_questionChild;
 
     private static Random mRandom = new Random();
     private int mAgree;
     private int mDisagree;
+    private String mQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
         dr_firebase = FirebaseDatabase.getInstance().getReference();
         dr_agreeChild = dr_firebase.child("agree");
         dr_disagreeChild = dr_firebase.child("disagree");
+        dr_questionChild = dr_firebase.child("question");
 
-        tv_question.setText("Does Firebase work in real-time? " + mRandom.nextInt(100));
+        tv_question.setText("");
 
         b_agree.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +99,19 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mDisagree = dataSnapshot.getValue(Integer.class);
                 tv_disagree.setText(mDisagree+"");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        dr_questionChild.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mQuestion = dataSnapshot.getValue(String.class);
+                tv_question.setText(mQuestion);
             }
 
             @Override
