@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,8 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    private Button b_agree;
-    private Button b_disagree;
+    private ImageButton b_agree;
+    private ImageButton b_disagree;
     private Button b_reset;
 
     private TextView tv_agree;
@@ -44,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         mAgree = 0;
         mDisagree = 0;
 
-        b_agree = (Button)findViewById(R.id.agree_b);
-        b_disagree = (Button)findViewById(R.id.disagree_b);
+        b_agree = (ImageButton)findViewById(R.id.agree_b);
+        b_disagree = (ImageButton)findViewById(R.id.disagree_b);
         b_reset = (Button)findViewById(R.id.reset_b);
 
         tv_agree = (TextView)findViewById(R.id.agree_tv);
